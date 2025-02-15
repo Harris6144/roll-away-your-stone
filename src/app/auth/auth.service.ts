@@ -1,9 +1,23 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
+import { Auth, user } from '@angular/fire/auth';
+import { map, Observable } from 'rxjs';
+
+import { User } from './user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   auth: Auth = inject(Auth);
+
+  getUser(): Observable<User | null> {
+    return user(this.auth).pipe(map(user => {
+      if(user) {
+        return { ...user } as User;
+      }
+      else {
+        return null;
+      }
+    }));
+  }
 }
