@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signOut, user } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, user } from '@angular/fire/auth';
 import { map, Observable } from 'rxjs';
 
-import { SignUpDto, User } from './user.model';
+import { SignInDto, SignUpDto, User } from './user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,12 @@ export class AuthService {
 
   async signUp(signUpDto: SignUpDto): Promise<User> {
     return createUserWithEmailAndPassword(this.auth, signUpDto.email, signUpDto.password).then(userCredential => {
+      return { ...userCredential.user } as User;
+    });
+  }
+
+  async signIn(signInDto: SignInDto): Promise<User> {
+    return signInWithEmailAndPassword(this.auth, signInDto.email, signInDto.password).then(userCredential => {
       return { ...userCredential.user } as User;
     });
   }
