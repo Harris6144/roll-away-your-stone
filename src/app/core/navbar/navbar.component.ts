@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { AuthService } from '../../auth/auth.service';
 import { User } from '../../auth/user.model';
 
 @Component({
   selector: 'nav[app-navbar]',
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
   host: {
     'class': 'navbar navbar-expand-lg bg-dark',
