@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { collection, Firestore, getDocs } from '@angular/fire/firestore';
+import { collection, doc, Firestore, getDoc, getDocs } from '@angular/fire/firestore';
 
 import { Song } from './song.model';
 
@@ -14,6 +14,12 @@ export class SongService {
       return querySnapshot.docs.map(queryDocumentSnapshot => {
         return { id: queryDocumentSnapshot.id, ...queryDocumentSnapshot.data() } as Song;
       });
+    });
+  }
+
+  async getSong(songId: string): Promise<Song> {
+    return getDoc(doc(this.firestore, 'songs', songId)).then(documentSnapshot => {
+      return { id: documentSnapshot.id, ...documentSnapshot.data() } as Song;
     });
   }
 }

@@ -1,11 +1,11 @@
 <div class="container">
   @if (songs.hasValue()) {
     <h3>Songs</h3>
-    <ul class="list-group mt-3">
+    <div class="list-group mt-3">
       @for (song of songs.value(); track $index) {
-        <li class="list-group-item">{{ song.title }}</li>
+        <a class="list-group-item list-group-item-action" [routerLink]="['/songs', song.id]">{{ song.title }}</a>
       }
-    </ul>
+    </div>
   }
   @else {
     <div class="text-center">
