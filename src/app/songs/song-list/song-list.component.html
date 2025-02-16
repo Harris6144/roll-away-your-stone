@@ -1,0 +1,15 @@
+<div class="container">
+  @if (songs.hasValue()) {
+    <h3>Songs</h3>
+    <ul class="list-group mt-3">
+      @for (song of songs.value(); track $index) {
+        <li class="list-group-item">{{ song.title }}</li>
+      }
+    </ul>
+  }
+  @else {
+    <div class="text-center">
+      <div class="spinner-border text-dark"></div>
+    </div>
+  }
+</div>
