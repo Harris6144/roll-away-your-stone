@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { addDoc, collection, doc, Firestore, getDoc, getDocs, serverTimestamp, updateDoc } from '@angular/fire/firestore';
+import { addDoc, collection, deleteDoc, doc, Firestore, getDoc, getDocs, serverTimestamp, updateDoc } from '@angular/fire/firestore';
 
 import { CreateSongDto, Song, UpdateSongDto } from './song.model';
 
@@ -37,5 +37,9 @@ export class SongService {
         return { id: documentSnapshot.id, ...documentSnapshot.data() } as Song;
       });
     });
+  }
+
+  deleteSong(songId: string): Promise<void> {
+    return deleteDoc(doc(this.firestore, 'songs', songId));
   }
 }
