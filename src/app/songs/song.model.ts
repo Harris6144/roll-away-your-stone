@@ -10,3 +10,8 @@ export interface CreateSongDto {
   title: string;
   lyrics: string;
 }
+
+export interface UpdateSongDto {
+  title: string;
+  lyrics: string;
+}

@@ -1,6 +1,9 @@
 <div class="container">
   @if (song.hasValue()) {
-    <h3>{{ song.value().title }}</h3>
+    <div class="hstack gap-3">
+      <h3>{{ song.value().title }}</h3>
+      <button class="btn btn-secondary ms-auto" type="button" [routerLink]="['/update-song', song.value().id]">Update</button>
+    </div>
     <div class="bg-body-secondary rounded mt-3 p-5 text-center">
       <p class="mb-0" [innerText]="song.value().lyrics"></p>
     </div>

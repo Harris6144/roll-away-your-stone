@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { addDoc, collection, doc, Firestore, getDoc, getDocs, serverTimestamp } from '@angular/fire/firestore';
+import { addDoc, collection, doc, Firestore, getDoc, getDocs, serverTimestamp, updateDoc } from '@angular/fire/firestore';
 
-import { CreateSongDto, Song } from './song.model';
+import { CreateSongDto, Song, UpdateSongDto } from './song.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,14 @@ export class SongService {
   async createSong(createSongDto: CreateSongDto): Promise<Song> {
     return addDoc(collection(this.firestore, 'songs'), { ...createSongDto, created: serverTimestamp(), updated: serverTimestamp() }).then(documentReference => {
       return getDoc(documentReference).then(documentSnapshot => {
+        return { id: documentSnapshot.id, ...documentSnapshot.data() } as Song;
+      });
+    });
+  }
+
+  async updateSong(songId: string, updateSongDto: UpdateSongDto): Promise<Song> {
+    return updateDoc(doc(this.firestore, 'songs', songId), { ...updateSongDto, updated: serverTimestamp() }).then(() => {
+      return getDoc(doc(this.firestore, 'songs', songId)).then(documentSnapshot => {
         return { id: documentSnapshot.id, ...documentSnapshot.data() } as Song;
       });
     });
