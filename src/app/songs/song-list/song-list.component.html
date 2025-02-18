@@ -1,6 +1,9 @@
 <div class="container">
   @if (songs.hasValue()) {
-    <h3>Songs</h3>
+    <div class="hstack gap-3">
+      <h3>Songs</h3>
+      <button class="btn btn-secondary ms-auto" type="button" routerLink="/create-song">Create</button>
+    </div>
     <div class="list-group mt-3">
       @for (song of songs.value(); track $index) {
         <a class="list-group-item list-group-item-action" [routerLink]="['/songs', song.id]">{{ song.title }}</a>

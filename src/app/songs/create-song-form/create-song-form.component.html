@@ -1,0 +1,16 @@
+<div class="container">
+  <h3>Create song</h3>
+  <form [formGroup]="createSongForm" (submit)="onSubmit()">
+    <div class="mt-3">
+      <label class="form-label" for="title">Title</label>
+      <input class="form-control" type="text" name="title" id="title" formControlName="title">
+    </div>
+    <div class="mt-3">
+      <label class="form-label" for="lyrics">Lyrics</label>
+      <textarea class="form-control" name="lyrics" id="lyrics" cols="30" rows="10" formControlName="lyrics"></textarea>
+    </div>
+    <div class="mt-3">
+      <button class="btn btn-dark" type="submit" [disabled]="createSongForm.disabled">Submit</button>
+    </div>
+  </form>
+</div>

@@ -5,3 +5,8 @@ export interface Song {
   created: Date;
   updated: Date;
 }
+
+export interface CreateSongDto {
+  title: string;
+  lyrics: string;
+}
