@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/roll-away-your-stone/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
