@@ -7,5 +7,12 @@
     @if (user) {
       <span class="navbar-text ms-auto">{{user.email}}</span>
     }
+    @else {
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/sign-up" routerLinkActive="active">Sign-up</a>
+        </li>
+      </ul>
+    }
   </div>
 </div>
