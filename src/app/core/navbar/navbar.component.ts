@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+import { AuthService } from '../../auth/auth.service';
+import { User } from '../../auth/user.model';
 
 @Component({
   selector: 'nav[app-navbar]',
@@ -11,5 +15,10 @@ import { RouterLink } from '@angular/router';
   }
 })
 export class NavbarComponent {
+  authService: AuthService = inject(AuthService);
+  user: User | null = null;
 
+  constructor() {
+    this.authService.getUser().pipe(takeUntilDestroyed()).subscribe(user => this.user = user);
+  }
 }

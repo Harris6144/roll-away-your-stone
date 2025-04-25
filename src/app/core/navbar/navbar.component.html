@@ -3,5 +3,9 @@
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="navbar-collapse collapse" id="navbarContent"></div>
+  <div class="navbar-collapse collapse" id="navbarContent">
+    @if (user) {
+      <span class="navbar-text ms-auto">{{user.email}}</span>
+    }
+  </div>
 </div>
