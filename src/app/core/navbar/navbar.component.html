@@ -4,18 +4,25 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="navbar-collapse collapse" id="navbarContent">
-    @if (user) {
-      <span class="navbar-text ms-auto">{{user.email}}</span>
-    }
-    @else {
-      <ul class="navbar-nav ms-auto">
+    <ul class="navbar-nav ms-auto">
+      @if (user) {
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">{{user.email}}</a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <a class="dropdown-item" role="button" [class.disabled]="isSigningOut()" (click)="onSignOut()">Sign-out</a>
+            </li>
+          </ul>
+        </li>
+      }
+      @else {
         <li class="nav-item">
           <a class="nav-link" routerLink="/sign-up" routerLinkActive="active">Sign-up</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/sign-in" routerLinkActive="active">Sign-in</a>
         </li>
-      </ul>
-    }
+      }
+    </ul>
   </div>
 </div>

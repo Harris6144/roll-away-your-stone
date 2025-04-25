@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, user } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, user } from '@angular/fire/auth';
 import { map, Observable } from 'rxjs';
 
 import { SignInDto, SignUpDto, User } from './user.model';
@@ -40,5 +40,9 @@ export class AuthService {
         email: userCredential.user.email
       } as User;
     });
+  }
+
+  signOut(): Promise<void> {
+    return signOut(this.auth);
   }
 }
